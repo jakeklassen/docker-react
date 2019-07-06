@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - '3000:3000'
+    volumes:
+      # We don't want to map 'node_modules', just keep the
+      # folder after the packages are installed in the container.
+      - /app/node_modules
+      - .:/app
+
+  # I don't really care for this approach.
+  # I think it's fine to run `docker exec ... yarn test` against
+  # the `web` container.
+  # tests:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.dev
+  #   volumes:
+  #     - /app/node_modules
+  #     - .:/app
+  #   command: 'yarn test'
