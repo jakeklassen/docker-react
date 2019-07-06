@@ -2,6 +2,10 @@ FROM node:12-alpine
 
 WORKDIR /app
 
+# Used during CI to allow tests to exit
+# https://facebook.github.io/create-react-app/docs/running-tests#on-your-own-environment
+# ENV CI=true
+
 COPY package.json .
 COPY yarn.lock .
 
