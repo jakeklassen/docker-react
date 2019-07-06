@@ -11,4 +11,6 @@ RUN yarn install --production && \
 # Run phase
 FROM nginx
 
+EXPOSE 80
+
 COPY --from=build /app/build /usr/share/nginx/html
